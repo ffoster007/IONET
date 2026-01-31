@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# สคริปต์ CLI พื้นฐาน
-# วิธีใช้: ./script.sh [command] [options]
 
 # สี ANSI สำหรับการแสดงผล
 RED='\033[0;31m'
@@ -27,10 +25,10 @@ print_warning() {
     echo -e "${YELLOW}⚠${NC} $1"
 }
 
-# ฟังก์ชันแสดงวิธีใช้
+
 show_help() {
     cat << EOF
-การใช้งาน: $(basename "$0") [command] [options]
+การใช้งาน: ionet [command] [options]
 
 คำสั่ง:
     help        แสดงความช่วยเหลือนี้
@@ -45,17 +43,13 @@ show_help() {
     -f, --force     บังคับทำงาน
 
 ตัวอย่าง:
-    $(basename "$0") list
-    $(basename "$0") create myfile.txt
-    $(basename "$0") delete myfile.txt --force
+    ionet list
+    ionet create myfile.txt
+    ionet delete myfile.txt --force
 
 EOF
 }
 
-# ฟังก์ชันแสดงเวอร์ชัน
-show_version() {
-    echo "เวอร์ชัน 1.0.0"
-}
 
 # ฟังก์ชันแสดงรายการไฟล์
 list_files() {
@@ -169,7 +163,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-
+# ถ้าไม่มี argument แสดง help
 if [ $# -eq 0 ]; then
     show_help
     exit 0
