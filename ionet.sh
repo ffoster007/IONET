@@ -107,75 +107,8 @@ Examples:
 EOF
 }
 
-# ฟังก์ชันแสดงเวอร์ชัน
-show_version() {
-    echo "เวอร์ชัน 1.0.0"
-}
 
-# ฟังก์ชันแสดงรายการไฟล์
-list_files() {
-    print_info "Listing files in the current directory:"
-    ls -lh | tail -n +2
-}
 
-# ฟังก์ชันสร้างไฟล์
-create_file() {
-    local filename="$1"
-    
-    if [ -z "$filename" ]; then
-        print_error "Please specify a filename"
-        return 1
-    fi
-    
-    if [ -f "$filename" ]; then
-        print_warning "File $filename already exists"
-        read -p "Do you want to overwrite it? (y/n): " confirm
-        if [ "$confirm" != "y" ]; then
-            print_info "File creation cancelled"
-            return 0
-        fi
-    fi
-    
-    touch "$filename"
-    if [ $? -eq 0 ]; then
-        print_success "File $filename created successfully"
-    else
-        print_error "Failed to create file $filename"
-        return 1
-    fi
-}
-
-# ฟังก์ชันลบไฟล์
-delete_file() {
-    local filename="$1"
-    local force="$2"
-    
-    if [ -z "$filename" ]; then
-        print_error "Please specify a filename"
-        return 1
-    fi
-    
-    if [ ! -f "$filename" ]; then
-        print_error "File $filename not found"
-        return 1
-    fi
-    
-    if [ "$force" != "true" ]; then
-        read -p "Do you want to delete the file $filename? (y/n): " confirm
-        if [ "$confirm" != "y" ]; then
-            print_info "File deletion cancelled"
-            return 0
-        fi
-    fi
-    
-    rm "$filename"
-    if [ $? -eq 0 ]; then
-        print_success "File $filename deleted successfully"
-    else
-        print_error "Failed to delete file $filename"
-        return 1
-    fi
-}
 
 # Variables for options
 VERBOSE=false
@@ -211,18 +144,6 @@ while [[ $# -gt 0 ]]; do
         version)
             show_version
             exit 0
-            ;;
-        list)
-            list_files
-            exit 0
-            ;;
-        create)
-            create_file "$2"
-            exit $?
-            ;;
-        delete)
-            delete_file "$2" "$FORCE"
-            exit $?
             ;;
         *)
             print_error "Invalid command: $1"
