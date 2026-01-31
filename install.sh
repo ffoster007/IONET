@@ -1,6 +1,8 @@
 #!/bin/bash
 
 
+IONET_INSTALL_DIR=/usr/local/ionet
+
 # สี ANSI สำหรับการแสดงผล
 RED='\033[0;31m'
 GREEN='\033[0;32m'
