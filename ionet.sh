@@ -89,9 +89,6 @@ Commands:
     uninstall   Uninstall ionet CLI
     help        Show this help message
     version     Show version
-    list        List files
-    create      Create a new file
-    delete      Delete a file
 
 Options:
     -h, --help      Show help
