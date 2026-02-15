@@ -1,7 +1,7 @@
 # IONET
 <p align="center">
   <a href="#" target="_blank" rel="noopener">
-    <img src="loot/IONET.png" alt="avacx" />
+    <img src="loot/ionet.png" alt="avacx" />
   </a>
 </p>
 
